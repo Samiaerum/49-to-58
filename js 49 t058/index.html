@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="app.js"></script>
+</head>
+<body>
+    <H3>CHAPTER 49 to 52</H3>
+<H5>QUESTION 1</H5>
+<body>
+<div class="two">
+
+   <script>
+     function displayFormData(event) {
+       event.preventDefault(); // Prevent form submission
+
+       var name = document.getElementById('name').value;
+       var email = document.getElementById('email').value;
+       var password = document.getElementById('password').value;
+
+       var formData = {
+         Name: name,
+         Email: email,
+         Password: password
+       };
+
+       var formOutput = document.getElementById('formOutput');
+       formOutput.innerHTML = JSON.stringify(formData, null, 2);
+     }
+   </script>
+ </head>
+ <body>
+    <div class="one"> <h2>Signup Form</h2></div>
+
+   <form onsubmit="displayFormData(event)">
+     <label for="name">Name:</label>
+     <input type="text" id="name" required><br><br>
+
+     <label for="email">Email:</label>
+     <input type="email" id="email" required><br><br>
+
+     <label for="password">Password:</label>
+     <input type="password" id="password" required><br><br>
+
+     <input type="submit" value="Submit">
+   </form>
+
+   <h2>Form Data:</h2>
+   <pre id="formOutput"></pre>
+
+</div>
+</body>
+
+<h5>QUESTION 2</h5>
+
+  <style>
+    .item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .item .details {
+      display: none;
+    }
+  </style>
+  <script>
+    function toggleDetails(buttonId, detailsId) {
+      var button = document.getElementById(buttonId);
+      var details = document.getElementById(detailsId);
+
+      if (details.style.display === 'none') {
+        details.style.display = 'block';
+        button.innerHTML = 'Read less';
+      } else {
+        details.style.display = 'none';
+        button.innerHTML = 'Read more';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Item Details</h2>
+
+  <div class="item">
+    <h3>Item 1</h3>
+    <p>This is a brief description of burger.</p>
+    <p id="item1Details" class="details">hey this is my own recipe burger please try it .</p>
+    <button onclick="toggleDetails('item1Button', 'item1Details')">Read more</button>
+  </div>
+
+  <div class="item">
+    <h3>Item 2</h3>
+    <p>This is a brief description of pizza.</p>
+    <p id="item2Details" class="details">This is my 2nd item i spend a lot of my time in that so pleASE TRY IT.</p>
+    <button onclick="toggleDetails('item2Button', 'item2Details')">Read more</button>
+  </div>
+
+  <div class="item">
+    <h3>Item 3</h3>
+    <p>This is a brief description of CHEESY PASTA.</p>
+    <p id="item3Details" class="details">cheese is all time fav of almost al l so try it.</p>
+    <button onclick="toggleDetails('item3Button', 'item3Details')">Read more</button>
+  </div>
+
+<H5>QUESTION 3</H5>
+
+       <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .hidden-form {
+          display: none;
+          margin-top: 20px;
+        }
+
+        .hidden-form label {
+          display: block;
+          margin-top: 10px;
+        }
+
+        .hidden-form input[type="text"] {
+          width: 200px;
+          padding: 5px;
+        }
+
+        .hidden-form button {
+          margin-top: 10px;
+          padding: 5px 10px;
+        }
+      </style>
+      <script>
+        function addStudent() {
+          var table = document.getElementById("student-table");
+          var firstName = document.getElementById("first-name").value;
+          var lastName = document.getElementById("last-name").value;
+          var age = document.getElementById("age").value;
+
+          var row = table.insertRow(-1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+
+          cell1.innerHTML = firstName;
+          cell2.innerHTML = lastName;
+          cell3.innerHTML = age;
+          cell4.innerHTML = '<button onclick="editStudent(this)">Edit</button> <button onclick="deleteStudent(this)">Delete</button>';
+
+          // Reset form values
+          document.getElementById("first-name").value = "";
+          document.getElementById("last-name").value = "";
+          document.getElementById("age").value = "";
+        }
+
+        function deleteStudent(button) {
+          var row = button.parentNode.parentNode;
+          row.parentNode.removeChild(row);
+        }
+
+        function editStudent(button) {
+          var row = button.parentNode.parentNode;
+          var firstName = row.cells[0].innerHTML;
+          var lastName = row.cells[1].innerHTML;
+          var age = row.cells[2].innerHTML;
+
+          var hiddenForm = document.getElementById("hidden-form");
+          hiddenForm.style.display = "block";
+
+          hiddenForm.elements["edit-first-name"].value = firstName;
+          hiddenForm.elements["edit-last-name"].value = lastName;
+          hiddenForm.elements["edit-age"].value = age;
+
+          hiddenForm.onsubmit = function(event) {
+            event.preventDefault();
+            row.cells[0].innerHTML = hiddenForm.elements["edit-first-name"].value;
+            row.cells[1].innerHTML = hiddenForm.elements["edit-last-name"].value;
+            row.cells[2].innerHTML = hiddenForm.elements["edit-age"].value;
+
+            hiddenForm.style.display = "none";
+          }
+        }
+      </script>
+    </head>
+    <body>
+      <h1>Student Details</h1>
+      <form id="student-form" onsubmit="event.preventDefault(); addStudent();">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" required>
+
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" required>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" required>
+
+        <button type="submit">Add Student</button>
+      </form>
+
+      <table id="student-table">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Actions</th>
+        </tr>
+      </table>
+
+      <form id="hidden-form" class="hidden-form">
+        <label for="edit-first-name">First Name:</label>
+        <input type="text" id="edit-first-name">
+
+        <label for="edit-last-name">Last Name:</label>
+        <input type="text" id="edit-last-name">
+
+        <label for="edit-age">Age:</label>
+        <input type="text" id="edit-age">
+
+        <button type="submit">Save</button>
+      </form>
+
+
+<H2>CHAPTER 53-58</H2>
+<H5>QUESTION 1</H5>
+
+<style>
+    .modal {
+        display: inline;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .modal-close {
+        display: none;
+    }
+
+</style>
+</head>
+<body>
+<div id="modal" class="modal modal-close">
+    <img id="modalImage" class="modal-content" alt="Modal Image">
+</div>
+
+<div id="imageContainer">
+    <!-- Add your image paths here -->
+    <img src="data:image/jpeg;base64,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" style="height: 360px; width: 500px;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHXotj7MSX-xm46rtP-ep-gKWvpvFn8g_uGw&usqp=CAU" style="height: 360px;">
+    <img src="https://images.unsplash.com/photo-1517315003714-a071486bd9ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGFlc3RoZXRpY3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" style="height: 360px;">
+</div>
+
+<script>
+    var modal = document.getElementById('modal');
+    var modalImage = document.getElementById('modalImage');
+
+    function onImageClick(imagePath) {
+        modal.classList.add('modal-open');
+        modal.classList.remove('modal-close');
+        modal.style.display = 'block';
+        modalImage.src = imagePath;
+    }
+
+    function onClosedImageModal() {
+        modal.classList.add('modal-close');
+        modal.classList.remove('modal-open');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 550);
+    }
+
+    var imageContainer = document.getElementById('imageContainer');
+    var images = imageContainer.getElementsByTagName('img');
+
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function () {
+            onImageClick(this.src);
+        };
+    }
+
+    modal.onclick = onClosedImageModal;
+</script>
+</body>
+
+<H5>QUESTION 2</H5>
+
+<style>
+    #zoom-paragraph {
+      font-size: 16px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var fontSize = 16;
+
+      $("#zoom-in").click(function() {
+        fontSize += 10;
+        $("#zoom-paragraph").css("font-size", fontSize + "px");
+      });
+
+      $("#zoom-out").click(function() {
+        fontSize -= 10;
+        $("#zoom-paragraph").css("font-size", fontSize + "px");
+      });
+    });
+  </script>
+</head>
+<body>
+  <p id="zoom-paragraph">Its samia erum.</p>
+  <button id="zoom-in">Zoom In (+)</button>
+  <button id="zoom-out">Zoom Out (-)</button>
+</body>
+</html>

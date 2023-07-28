@@ -1,0 +1,25 @@
+.two{
+background-color:rgb(164, 124, 202);
+}
+ .one{
+    background-color:rgb(103, 22, 180) ;
+ }
+ h2{
+    text-align: center;
+ }
+.twobutton[type="submit"][type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  } 
+
+
+.item{
+    background-image: url(https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?cs=srgb&dl=pexels-robin-stickel-70497.jpg&fm=jpg);
+}
